@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+  Created By Shaymaa at 02/01/19 20:47.
+  -->
+
+<!--
+  Created By Shaymaa at 20/12/18 16:57.
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order_additional_info">
+            <block class="MageArab\OrderItems\Block\Adminhtml\Order\View\Items\SaveButton" name="save-items-button" template="MageArab_OrderItems::order/view/items/saveButton.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="order_tab_info">
+            <block class="Magento\Sales\Block\Adminhtml\Order\View\Items" name="order_items" template="Magento_Sales::order/view/items.phtml">
+
+                <arguments>
+                    <argument name="columns" xsi:type="array">
+                        <item name="image" xsi:type="string" translate="true"> </item>
+                        <item name="product" xsi:type="string" translate="true">Product</item>
+                        <item name="status" xsi:type="string" translate="true">Item Status</item>
+                        <item name="shipping_status" xsi:type="string" translate="true">Shipping Status</item>
+                        <!--<item name="price-original" xsi:type="string" translate="true">Original Price</item>-->
+                        <item name="price" xsi:type="string" translate="true">Price</item>
+                        <item name="ordered-qty" xsi:type="string" translate="true">Qty</item>
+                        <item name="buy_request" xsi:type="string" translate="true">Item Totals</item>
+                        <item name="barcode" xsi:type="string" translate="true">Barcode</item>
+                        <item name="merchant_code" xsi:type="string" translate="true">Merchant Code</item>
+                        <item name="merchant_order_number" xsi:type="string" translate="true">Merchant Order Number</item>
+
+                        <!--<item name="wherehouse_shipped" xsi:type="string" translate="true">WhereHouse Shipped</item>
+                        <item name="wherehouse_recieved" xsi:type="string" translate="true">WhereHouse Received</item>
+                        <item name="local_wherehouse_received" xsi:type="string" translate="true">Local WhereHouse Shipped</item>
+                        <item name="local_wherehouse_shipped" xsi:type="string" translate="true">Local WhereHouse Received</item>
+-->
+                       <!-- <item name="tax-amount" xsi:type="string" translate="true">Tax Amount</item>
+                        <item name="tax-percent" xsi:type="string" translate="true">Tax Percent</item>
+                        <item name="discont" xsi:type="string" translate="true">Discount Amount</item>-->
+                        <!--<item name="total" xsi:type="string" translate="true">Row Total</item>-->
+                    </argument>
+                </arguments>
+                <block class="MageArab\OrderItems\Block\Adminhtml\Order\View\Items\Renderer\NewRenderer" as="default" name="default_order_items_renderer" template="Magento_Sales::order/view/items/renderer/default.phtml">
+                    <arguments>
+                        <argument name="columns" xsi:type="array">
+                            <item name="image" xsi:type="string" translate="true">col-image</item>
+                            <item name="product" xsi:type="string" translate="false">col-product</item>
+                            <item name="status" xsi:type="string" translate="false">col-status</item>
+                            <item name="shipping_status" xsi:type="string" translate="true">col-shipping-status</item>
+                            <!--<item name="price-original" xsi:type="string" translate="false">col-price-original</item>-->
+                            <item name="price" xsi:type="string" translate="false">col-price</item>
+                            <item name="qty" xsi:type="string" translate="false">col-ordered-qty</item>
+                            <item name="buy_request" xsi:type="string" translate="true">col-item-totals</item>
+                            <item name="barcode" xsi:type="string" translate="true">col-barcode</item>
+                            <item name="merchant_code" xsi:type="string" translate="true">col-merchant-code</item>
+                            <item name="merchant_order_number" xsi:type="string" translate="true">col-merchant-order-number</item>
+                            <!--<item name="wherehouse_shipped" xsi:type="string" translate="true">col-whereHouse-shipped</item>
+                            <item name="wherehouse_recieved" xsi:type="string" translate="true">col-whereHouse-received</item>
+                            <item name="local_wherehouse_received" xsi:type="string" translate="true">col-local-whereHouse-shipped</item>
+                            <item name="local_wherehouse_shipped" xsi:type="string" translate="true">col-local-whereHouse-received</item>
+-->
+                            <!--<item name="tax-amount" xsi:type="string" translate="false">col-tax-amount</item>
+                            <item name="tax-percent" xsi:type="string" translate="false">col-tax-percent</item>
+                            <item name="discont" xsi:type="string" translate="false">col-discont</item>-->
+                            <!--<item name="total" xsi:type="string" translate="false">col-total</item>-->
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="Magento_Sales::items/column/qty.phtml" group="column"/>
+                <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="Magento_Sales::items/column/name.phtml" group="column"/>
+                <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+            </block>
+
+        </referenceBlock>
+    </body>
+</page>

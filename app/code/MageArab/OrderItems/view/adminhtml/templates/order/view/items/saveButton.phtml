@@ -1,0 +1,70 @@
+
+<form class="form"
+      action="<?=$block->getSaveUrl()?>"
+      method="post" id="form-validate" enctype="multipart/form-data">
+
+    <div class="col-md-12 form-btn text-center">
+        <?php echo $block->getBlockHtml('formkey')?>
+        <input type="hidden" name="updated-items" id="items" value="[]">
+        <input type="submit"
+               id="save"
+               value="Save Items"
+               name="save"
+               class="action-basic approve-all"/>
+    </div>
+
+</form>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        "use strict";
+
+        $('.editable-input').change( function(event) {
+            console.log('hi');
+            var flag=0;
+            var itemId=$(this).attr('data-id');
+            var key=$(this).attr('name');
+            var data={
+                'key':$(this).attr('name'),
+                'value':$(this).val()
+            };
+
+            var currentVal = JSON.parse($('#items').val());
+            $.each( currentVal, function( i, row ) {
+                var id = row.itemId;
+                console.log(row,row.itemId);
+                if(id == itemId){
+                    currentVal[i].data.push(data);
+                    /*console.log('try');
+                    var existData=row.data;
+                    existData.push(data);
+                    var item = {
+                        'itemId': itemId,
+                        'data': existData
+                    };
+                    currentVal[i]=item;*/
+                    flag=1;
+                    console.log(currentVal);
+                    return false;
+                }
+            });
+            console.log(data);
+            if(!flag){
+                var item = {
+                    'itemId': itemId,
+                    'data': [data]
+                };
+                currentVal.push(item);
+            }
+            console.log(item);
+            console.log(currentVal);
+
+
+            $('#items').val(JSON.stringify(currentVal));
+
+        });
+
+
+    });
+</script>
